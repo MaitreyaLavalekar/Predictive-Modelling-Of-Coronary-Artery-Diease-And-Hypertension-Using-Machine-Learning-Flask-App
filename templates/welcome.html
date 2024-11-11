@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #5d1197;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("{{ url_for('static', filename='images/bg_1.jpg') }}"); /* Updated background image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            flex-direction: column;
+        }
+
+        .welcome-message {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            padding: 15px;
+            background: linear-gradient(90deg, rgb(112, 121, 200) 0%, rgb(105, 114, 216) 50%, rgb(66, 85, 152) 100%);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            animation: pulse 1.5s infinite;
+            letter-spacing: 2px;
+        }
+
+        .input-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 400px;
+        }
+
+        .input-container label {
+            font-size: 18px;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        .input-container input[type="text"],
+        .input-container input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #666;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+
+        .input-container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Style for showing the result */
+        .result-container {
+            margin-top: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .result-container p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Welcome message displayed at the top of the page -->
+    <div class="welcome-message">
+        Welcome to Coronary Artery and Hypertension Prediction System
+    </div>
+
+    <!-- Input container for user variables -->
+    <div class="input-container">
+        <form action="/predict" method="POST">
+            <label for="cholesterol">Cholesterol (mg/dL):</label>
+            <input type="number" id="cholesterol" name="cholesterol" placeholder="Enter cholesterol level" required>
+            <div class="note">* Please enter a value between 200 and 260.</div>
+
+            <label for="diastolic_bp">Diastolic Blood Pressure (mm Hg):</label>
+            <input type="number" id="diastolic_bp" name="diastolic_bp" placeholder="Enter diastolic BP" required>
+            <div class="note">* Typical range: 60 - 90.</div>
+
+            <label for="systolic_bp">Systolic Blood Pressure (mm Hg):</label>
+            <input type="number" id="systolic_bp" name="systolic_bp" placeholder="Enter systolic BP" required>
+            <div class="note">* Typical range: 90 - 140.</div>
+
+            <label for="diabetes">Diabetes (1 for Yes, 0 for No):</label>
+            <input type="number" id="diabetes" name="diabetes" placeholder="Enter diabetes status" required>
+            <div class="note">* 1 = Yes, 0 = No.</div>
+
+            <label for="family_history">Family History (1 for Yes, 0 for No):</label>
+            <input type="number" id="family_history" name="family_history" placeholder="Enter family history status" required>
+            <div class="note">* 1 = Yes, 0 = No.</div>
+
+            <label for="blood_pressure_status">Blood Pressure Status:</label>
+            <input type="number" id="blood_pressure_status" name="blood_pressure_status" placeholder="Enter BP status (0 = low, 1 = high)" required>
+            <div class="note">* 0 = Low/Normal, 1 = High.</div>
+
+            <!-- Submit button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

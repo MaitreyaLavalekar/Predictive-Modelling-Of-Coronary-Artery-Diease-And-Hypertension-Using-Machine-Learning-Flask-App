@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coronory Artery Dieases and Hypertension Prediction </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #5d1197;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("{{ url_for('static', filename='images/bg_1.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .login-container {
+            background-color: rgb(234, 234, 234);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+        .password-container input {
+            width: 100%;
+            padding-right: 40px; /* Space for the eye icon */
+        }
+        .password-container .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    
+    <!-- Form starts here -->
+    <form action="/login" method="POST">
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        
+        <!-- Password field with eye icon for visibility toggle -->
+        <div class="password-container">
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <img src="https://icon-library.com/images/eye-icon-png/eye-icon-png-25.jpg" class="eye-icon" id="eyeIcon" width="20" onclick="togglePasswordWithIcon()">
+        </div>
+        
+        <!-- Login button -->
+        <button type="submit">Login</button>
+
+        <!-- Error message -->
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+    </form>
+</div>
+
+<script>
+    // Function to toggle password visibility using the eye icon
+    function togglePasswordWithIcon() {
+        var passwordField = document.getElementById("password");
+        var eyeIcon = document.getElementById("eyeIcon");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            eyeIcon.src = "https://icon-library.com/images/eye-icon-png/eye-icon-png-12.jpg"; // Change icon to an "eye-slash" image
+        } else {
+            passwordField.type = "password";
+            eyeIcon.src = "https://icon-library.com/images/eye-icon-png/eye-icon-png-25.jpg"; // Change back to "eye" image
+        }
+    }
+</script>
+
+</body>
+</html>
